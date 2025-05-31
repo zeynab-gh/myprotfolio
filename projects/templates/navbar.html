@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,9 +17,35 @@
                     Menu
                     <i class="fas fa-bars ms-1"></i>
                 </button>
+                
                  <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+
+                        
+                        {% if messages %}
+                           {% for message in messages %}
+                         <div class="alert alert-danger" role="alert" id="alert-message" style="font-size: 1rem;">
+                            {{ message }}
+                         </div>
+                           {% endfor %}
+                           <script>
+                                setTimeout(function() {
+                                    var element = document.getElementById('alert-message');
+                                    if (element) {
+                                        element.style.display = 'none';
+                                    }
+                                }, 1000); 
+                            </script>
+                        {% endif %}
+                                
+
                         <li class="nav-item"><a class="nav-link" href="/">صفحه اصلی </a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">خروج</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">ورود</a></li>
+                        {% endif %}
+
 
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,6 +67,8 @@
                 </div>
             </div>
         </nav>
+               
+
         <!-- Masthead-->
        
         <!-- Services-->

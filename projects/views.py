@@ -29,7 +29,21 @@ def category(request, cat):
         return redirect("/")
 
 def login_user(request):
-    return render(request, 'html.login')
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not  None:
+           login(request, user)
+           messages.success(request, ("با موفقیت وارد شدید"))
+           return redirect("project_list")
+        else:
+           messages.success(request, ("مشکلی در ورود پیش آمده "))
+           return redirect("login")
+           
+
+    return render(request, 'login.html')
 
 
 def logout_user(request):

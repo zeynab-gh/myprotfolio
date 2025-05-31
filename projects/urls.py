@@ -16,6 +16,5 @@ urlpatterns = [
     path('category/<str:cat>',views.category, name= 'category' ),
     path('login/', views.login_user, name= 'login'),
     path('logout/', views.logout_user, name= 'logout'),
-    
-    
+       
 ]
