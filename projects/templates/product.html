@@ -1,0 +1,68 @@
+{% load static %}
+    {% include 'navbar.html' %}
+
+    
+    
+            <br><br><br><br><br><br><br>  
+               <div class="container-fluid d-flex justify-content-center">
+                <div class="card mb-4" style="max-width: 1000px;">
+                <div class="d-flex justify-content-center mt-3">
+                    <img src="{{ project.image.url }}" style="max-width: 700px; height: auto;" class="" alt="...">
+                </div>
+
+                <div class="card-body text-end">
+                    <h5 class="card-title">{{ project.titel }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+
+                    <p class="card-text"> ویدئو </p>
+
+                    <div>
+                        <div class="card mb-4" style="max-width: 800px;">
+                        <div class="d-flex justify-content-center mt-3">
+                            {% if project.video %}
+                                <video controls style="max-width:800px; width:500%; height:auto;">
+                                    <source src="{{ project.video.url }}" type="video/mp4">
+                                    مرورگر شما از تگ ویدئو پشتیبانی نمی‌کند.
+                                </video>
+                            {% else %}
+                                <p>ویدئو برای این پروژه آپلود نشده است.</p>
+                            {% endif %}
+                        </div>
+                            
+                    </div>
+                    </div>
+
+
+
+
+
+                  {% for link in project.github_links.all %}
+                     <a href="{{ link.url }}" class="btn btn-success" target="_blank">کد گیتهاب</a>
+                  {% endfor %}                   
+
+                    <br><br>
+
+
+
+                  {% if project.download_file %}
+                   <a href="{{ project.download_file.url }}" class="btn btn-info" download>دانلود فایل</a>
+                  {% else %}
+                  <p>هیچ فایلی برای دانلود موجود نیست.</p>
+                  {% endif %}
+                 
+                    
+                  
+              </div>
+              
+                </div>
+                
+            </div>
+            </div>
+            <div>
+           
+        </section>
+                  
+        <br><br><br><br> 
+   
+       
+                                
