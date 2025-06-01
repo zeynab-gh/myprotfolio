@@ -3,6 +3,9 @@ from django.shortcuts import redirect, render,HttpResponse
 from .models import Project,Category
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 
 
@@ -50,6 +53,12 @@ def logout_user(request):
     logout(request)
     messages.success(request,("با موفقیت خارج شدید"))
     return redirect("project_list")
+
+
+def singup_user(request):
+  
+    return render(request, 'singup.html', {})
+
 
 
 def navbar(request):
